@@ -1,0 +1,31 @@
+services:
+  web:
+    build:
+        context: ./
+        dockerfile: Dockerfile
+        target: prod
+        args:
+            - API_PORT=${API_PORT}
+            - NODE_ENV=${NODE_ENV}
+    container_name: backend-new
+    hostname: web
+    restart: on-failure
+    environment:
+      API_PORT: ${API_PORT}
+      NODE_ENV: production
+    ports:
+      - ${API_PORT}:${API_PORT}
+    depends_on:
+      - nginx-new
+    env_file:
+      - .env
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx/cert:/etc/letsencrypt/
