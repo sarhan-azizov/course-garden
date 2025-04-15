@@ -15,7 +15,7 @@ import {
   checkEnvironmentVariables();
 
   const app = await NestFactory.create(AppModule, {
-    cors: process.env.NODE_ENV !== 'production',
+    cors: true,
   });
 
   const configService = app.get<ConfigService>(ConfigService);
