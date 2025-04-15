@@ -12,7 +12,7 @@ RUN chmod +x /prod-docker-entrypoint.sh
 COPY package.json package-lock.json ./
 
 # Install production dependencies only
-RUN npm ci --omit=dev
+RUN npm ci -f --omit=dev
 
 # Copy application files
 COPY . .
