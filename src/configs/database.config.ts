@@ -7,7 +7,11 @@ export const getDatabaseConfig = (): TypeOrmModuleOptions => ({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-  entities: ['src/**/*.entity.ts'],
+  entities: [
+    process.env.NODE_ENV === 'development'
+      ? 'src/**/*.entity.ts'
+      : 'dist/**/*.entity.js',
+  ],
   ssl: process.env.NODE_ENV === 'development' ? false : {
     rejectUnauthorized: false,
   },
