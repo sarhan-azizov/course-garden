@@ -1,7 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-console.log("SARHAN", process.env);
-
 export const getDatabaseConfig = (): TypeOrmModuleOptions => ({
   type: 'postgres',
   host: process.env.DB_HOST,
@@ -10,6 +8,9 @@ export const getDatabaseConfig = (): TypeOrmModuleOptions => ({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   entities: ['src/**/*.entity.ts'],
-  synchronize: false,
+  ssl: process.env.NODE_ENV === 'development' ? false : {
+    rejectUnauthorized: false,
+  },
+  synchronize: true,
   // logging: process.env.NODE_ENV === 'development',
 }); 
