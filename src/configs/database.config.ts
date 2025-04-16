@@ -11,6 +11,6 @@ export const getDatabaseConfig = (): TypeOrmModuleOptions => ({
   ssl: process.env.NODE_ENV === 'development' ? false : {
     rejectUnauthorized: false,
   },
-  synchronize: true,
+  synchronize: false,
   // logging: process.env.NODE_ENV === 'development',
 }); 
