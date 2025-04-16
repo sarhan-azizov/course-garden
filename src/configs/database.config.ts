@@ -10,6 +10,6 @@ export const getDatabaseConfig = (): TypeOrmModuleOptions => ({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   entities: ['src/**/*.entity.ts'],
-  synchronize: true,
+  synchronize: false,
   // logging: process.env.NODE_ENV === 'development',
 }); 
